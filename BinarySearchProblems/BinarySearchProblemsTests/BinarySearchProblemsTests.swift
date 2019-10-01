@@ -14,14 +14,20 @@ class BinarySearchProblemsTests: XCTestCase {
     struct MatrixTestCase<T, ExpectedValue: Equatable> {
         let arr: [[T]]
         let target: T
-        let expectedValue: ExpectedValue
+        let expectedValue: ExpectedValue?
     }
-    
+        
     struct TestCase<T, ExpectedValue: Equatable> {
         let arr: [T]
         let target: T
-        let expectedValue: ExpectedValue
+        let expectedValue: ExpectedValue?
     }
+    
+    struct MissingNumberTestCase {
+        let arr: [Int]
+        let expectedValue: Int
+    }
+
     
     func testBinarySearch() {
         let doubleTestCases: [TestCase<Double, Bool>] = [TestCase(arr: [1,2,3,4,5,6.0], target: 4.0, expectedValue: true),
@@ -89,6 +95,26 @@ class BinarySearchProblemsTests: XCTestCase {
         ]
         for testCase in matrixTestCases {
             XCTAssertEqual(contains(value: testCase.target, in: testCase.arr), testCase.expectedValue)
+        }
+    }
+    
+    func testLastOccurrence() {
+        let testCases: [TestCase<Int, Int>] = [TestCase(arr: [2,5,5,5,6,6,8,9,9,9], target: 5, expectedValue: 3),
+                                               TestCase(arr: [2,5,5,5,6,6,8,9,9,9], target: 4, expectedValue: nil),
+                                               TestCase(arr: [1,1,1,2,3,3,4,5,8,8], target: 3, expectedValue: 5),
+        ]
+        for testCase in testCases {
+            XCTAssertEqual(lastOccurrence(of: testCase.target, in: testCase.arr), testCase.expectedValue)
+        }
+    }
+    
+    func testSmallestMissingNumber() {
+        let testCases: [MissingNumberTestCase] = [MissingNumberTestCase(arr: [0,1,2,6,9,11,15], expectedValue: 3),
+                                                  MissingNumberTestCase(arr: [1,2,3,4,6,9,11,15], expectedValue: 0),
+                                                  MissingNumberTestCase(arr: [0,1,2,3,4,5,6], expectedValue: 7)
+        ]
+        for testCase in testCases {
+            XCTAssertEqual(smallestMissingNumber(in: testCase.arr), testCase.expectedValue)
         }
     }
 }

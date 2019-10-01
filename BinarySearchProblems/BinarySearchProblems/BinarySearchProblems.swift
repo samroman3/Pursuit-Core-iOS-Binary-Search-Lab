@@ -37,6 +37,6 @@ func lastOccurrence<T: Comparable>(of value: T, in arr: [T]) -> Int? {
 // https://www.techiedelight.com/find-smallest-missing-element-sorted-array/
 // 5. Given a sorted array of distinct non-negative integers, find the smallest missing number.  Your solution should work in O(log(n)) time
 
-func smallestMissingNumber(in arr: [Int]) -> Int? {
-    return nil
+func smallestMissingNumber(in arr: [Int]) -> Int {
+    return -1
 }
